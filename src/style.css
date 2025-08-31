@@ -1,3 +1,14 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@font-face {
+  font-family: Arnaiz;
+  src: url(/fonts/arnaiz.otf);
+}
+
+@theme {
+  --font-arnaiz: "Arnaiz";
+  --font-outfit: "Outfit", sans-serif;
+  --font-inter: "Inter", sans-serif;
+}

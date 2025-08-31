@@ -8,28 +8,73 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
+import { createFileRoute } from '@tanstack/react-router'
 
-export interface FileRoutesByFullPath {}
-export interface FileRoutesByTo {}
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+
+const PostsPostLazyRouteImport = createFileRoute('/posts/$post')()
+
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PostsPostLazyRoute = PostsPostLazyRouteImport.update({
+  id: '/posts/$post',
+  path: '/posts/$post',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import('./routes/posts/$post.lazy').then((d) => d.Route))
+
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/posts/$post': typeof PostsPostLazyRoute
+}
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/posts/$post': typeof PostsPostLazyRoute
+}
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/posts/$post': typeof PostsPostLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: never
+  fullPaths: '/' | '/posts/$post'
   fileRoutesByTo: FileRoutesByTo
-  to: never
-  id: '__root__'
+  to: '/' | '/posts/$post'
+  id: '__root__' | '/' | '/posts/$post'
   fileRoutesById: FileRoutesById
 }
-export interface RootRouteChildren {}
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {}
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  PostsPostLazyRoute: typeof PostsPostLazyRoute
 }
 
-const rootRouteChildren: RootRouteChildren = {}
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/posts/$post': {
+      id: '/posts/$post'
+      path: '/posts/$post'
+      fullPath: '/posts/$post'
+      preLoaderRoute: typeof PostsPostLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
+}
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  PostsPostLazyRoute: PostsPostLazyRoute,
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
