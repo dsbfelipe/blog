@@ -1,7 +1,7 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import Header from "../components/header";
+import Header from "../components/layout/header";
 import PageFrame from "../components/page-frame";
 import InnerContent from "../components/inner-content";
 

@@ -1,6 +1,6 @@
 const PageFrame = ({ children }) => {
   return (
-    <div className="flex min-h-screen w-screen justify-center bg-slate-50 dark:bg-slate-900 dark:text-slate-50">
+    <div className="flex min-h-screen w-screen justify-center bg-gray-200 dark:bg-gray-950 dark:text-gray-50">
       {children}
     </div>
   );
