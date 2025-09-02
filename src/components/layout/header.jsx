@@ -11,7 +11,7 @@ const Header = () => {
   const { toggleTheme, darkMode } = useTheme();
 
   return (
-    <header className="flex h-12 w-full items-center justify-center pt-8 md:justify-between">
+    <header className="flex h-12 w-full items-center justify-between pt-8">
       <Link to="/">
         <p className="flex font-arnaiz text-4xl">BLOG</p>
       </Link>
@@ -23,7 +23,7 @@ const Header = () => {
         <Link to="/" className="hover:underline">
           Início
         </Link>
-        <Link to="/recursos" className="hover:underline">
+        <Link to="/resources" className="hover:underline">
           Recursos
         </Link>
         <Link to="/sobre" disabled className="cursor-not-allowed text-gray-300">
@@ -31,10 +31,7 @@ const Header = () => {
         </Link>
       </nav>
 
-      <nav
-        aria-label="Ações rápidas"
-        className="hidden items-center gap-4 md:flex"
-      >
+      <nav aria-label="Ações rápidas" className="items-center gap-4 md:flex">
         <HeaderButton
           onClick={toggleTheme}
           ariaLabel="Alternar entre modo claro e escuro"
@@ -42,7 +39,7 @@ const Header = () => {
           {darkMode ? <MoonIcon size={24} /> : <SunIcon size={24} />}
         </HeaderButton>
 
-        <p>•</p>
+        <p className="hidden md:block">•</p>
 
         <HeaderButton
           href={"https://www.linkedin.com/in/dsbfelipe/"}
@@ -68,7 +65,7 @@ const HeaderButton = ({ children, ariaLabel, href, onClick }) => {
       <button
         onClick={onClick}
         aria-label={ariaLabel}
-        className="cursor-pointer rounded-md bg-transparent p-2 hover:bg-gray-100 dark:hover:bg-gray-900"
+        className={`${onClick ? "block" : "hidden md:block"} cursor-pointer rounded-md bg-transparent p-2 hover:bg-gray-100 dark:hover:bg-gray-900`}
       >
         {children}
       </button>

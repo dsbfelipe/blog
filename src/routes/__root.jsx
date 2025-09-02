@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Header from "../components/layout/header";
 import PageFrame from "../components/page-frame";
 import InnerContent from "../components/inner-content";
+import Footer from "../components/layout/footer";
 
 export const Route = createRootRoute({
   component: () => {
@@ -13,6 +14,7 @@ export const Route = createRootRoute({
           <InnerContent>
             <Header />
             <Outlet />
+            <Footer />
           </InnerContent>
         </PageFrame>
 

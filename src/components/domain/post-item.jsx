@@ -1,12 +1,18 @@
 import formatDate from "../../utils/format-date";
 import { Link } from "@tanstack/react-router";
+import { BookOpenIcon } from "@phosphor-icons/react";
 
-const PostItem = ({ title, category, date, image, tags, link }) => {
+const PostItem = ({ title, category, date, image, alt, tags, link }) => {
   return (
-    <div className="mb-12 flex w-full justify-between border-t border-gray-300 pt-12 font-outfit">
-      <div className="flex flex-1 justify-between">
+    <div className="mb-12 flex w-full flex-col justify-between border-t border-gray-300 pt-12 font-outfit md:flex-row dark:border-gray-700">
+      <div className="flex flex-1 flex-col gap-4 md:flex-row md:justify-between md:gap-0">
         <p className="text-gray-500 dark:text-gray-300">{category}</p>
-        <img className="mr-12 max-w-96" src={image} alt={title} />
+        <img
+          className="mb-6 md:mr-12 md:mb-0 md:max-w-96"
+          src={image}
+          alt={alt}
+          loading="lazy"
+        />
       </div>
       <div className="flex-1">
         <div className="flex gap-2">
@@ -15,9 +21,12 @@ const PostItem = ({ title, category, date, image, tags, link }) => {
           ))}
         </div>
         <p className="mt-4 text-4xl">{title}</p>
-        <p className="mt-2 text-gray-500">{formatDate(date)}</p>
+        <p className="mt-2 mb-8 text-gray-500">{formatDate(date)}</p>
         <Link to={link}>
-          <button>Ler mais</button>
+          <button className="flex w-full cursor-pointer items-center justify-center gap-2 bg-gray-950 px-6 py-3 text-gray-50 shadow-md md:w-auto dark:bg-gray-50 dark:text-gray-950">
+            <BookOpenIcon />
+            Ler mais
+          </button>
         </Link>
       </div>
     </div>

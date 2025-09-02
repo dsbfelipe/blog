@@ -2,21 +2,20 @@ const posts = [
   {
     title: "Estudo de caso: BLOG",
     category: "Projeto",
-    date: "2025-08-30",
+    date: "2025-08-30T00:00:00",
     author: "Felipe dos Santos Bento",
     tags: ["JavaScript", "React"],
-    image:
-      "https://images.unsplash.com/photo-1756547275349-7c7d668f3ce3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/images/estudo-de-caso-blog.webp",
     content: "/posts/blog-project.md",
   },
   {
-    title: "Estudo de caso: BLOG",
-    category: "Projeto",
-    date: "2025-08-30",
+    title: "Análise: Complete Intro to React, V9 - Frontend Masters",
+    category: "Curso",
+    date: "2025-08-29T00:00:00",
     author: "Felipe dos Santos Bento",
     tags: ["JavaScript", "React"],
-    image:
-      "https://images.unsplash.com/photo-1756547275349-7c7d668f3ce3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/images/complete-intro-to-react-v9.webp",
+    alt: "Três pessoas trabalhando em laptops em uma sala de aula moderna com grandes janelas. Um instrutor está ajudando dois alunos, apontando para a tela de um laptop, enquanto outros participantes estão ao fundo, focados em suas próprias tarefas.",
     content: "/posts/blog-project.md",
   },
 ];
