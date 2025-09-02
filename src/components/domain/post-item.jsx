@@ -2,14 +2,14 @@ import formatDate from "../../utils/format-date";
 import { Link } from "@tanstack/react-router";
 import { BookOpenIcon } from "@phosphor-icons/react";
 
-const PostItem = ({ title, category, date, image, alt, tags, path }) => {
+const PostItem = ({ title, category, date, alt, tags, path }) => {
   return (
     <div className="mb-12 flex w-full flex-col justify-between border-t border-gray-300 pt-12 font-outfit md:flex-row dark:border-gray-700">
       <div className="flex flex-1 flex-col gap-4 md:flex-row md:justify-between md:gap-0">
         <p className="text-gray-500 dark:text-gray-300">{category}</p>
         <img
           className="mb-6 md:mr-12 md:mb-0 md:max-w-96"
-          src={image}
+          src={`/images/${path}.webp`}
           alt={alt}
           loading="lazy"
         />
