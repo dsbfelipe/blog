@@ -12,8 +12,8 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ResourcesIndexRouteImport } from './routes/resources/index'
 
+const ResourcesIndexLazyRouteImport = createFileRoute('/resources/')()
 const PostsPostLazyRouteImport = createFileRoute('/posts/$post')()
 
 const IndexRoute = IndexRouteImport.update({
@@ -21,11 +21,13 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
+const ResourcesIndexLazyRoute = ResourcesIndexLazyRouteImport.update({
   id: '/resources/',
   path: '/resources/',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any).lazy(() =>
+  import('./routes/resources/index.lazy').then((d) => d.Route),
+)
 const PostsPostLazyRoute = PostsPostLazyRouteImport.update({
   id: '/posts/$post',
   path: '/posts/$post',
@@ -35,18 +37,18 @@ const PostsPostLazyRoute = PostsPostLazyRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/posts/$post': typeof PostsPostLazyRoute
-  '/resources': typeof ResourcesIndexRoute
+  '/resources': typeof ResourcesIndexLazyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/posts/$post': typeof PostsPostLazyRoute
-  '/resources': typeof ResourcesIndexRoute
+  '/resources': typeof ResourcesIndexLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/posts/$post': typeof PostsPostLazyRoute
-  '/resources/': typeof ResourcesIndexRoute
+  '/resources/': typeof ResourcesIndexLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -59,7 +61,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PostsPostLazyRoute: typeof PostsPostLazyRoute
-  ResourcesIndexRoute: typeof ResourcesIndexRoute
+  ResourcesIndexLazyRoute: typeof ResourcesIndexLazyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,7 +77,7 @@ declare module '@tanstack/react-router' {
       id: '/resources/'
       path: '/resources'
       fullPath: '/resources'
-      preLoaderRoute: typeof ResourcesIndexRouteImport
+      preLoaderRoute: typeof ResourcesIndexLazyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/posts/$post': {
@@ -91,7 +93,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PostsPostLazyRoute: PostsPostLazyRoute,
-  ResourcesIndexRoute: ResourcesIndexRoute,
+  ResourcesIndexLazyRoute: ResourcesIndexLazyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
