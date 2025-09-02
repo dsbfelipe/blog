@@ -5,9 +5,9 @@ const HeroSection = () => {
   return (
     <>
       {darkMode ? (
-        <SquareGrid url="svgs/square-grid-dark.svg" />
+        <SquareGrid url="/svgs/square-grid-dark.svg" />
       ) : (
-        <SquareGrid url="svgs/square-grid-light.svg" />
+        <SquareGrid url="/svgs/square-grid-light.svg" />
       )}
       <div className="mt-24 flex flex-col justify-between border-gray-300 md:flex-row md:items-end md:border-t md:pt-16 dark:border-gray-700">
         <p

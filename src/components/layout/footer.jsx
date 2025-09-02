@@ -17,7 +17,7 @@ const Footer = () => {
           <div className="flex flex-col items-center gap-6 md:flex-row md:items-start md:justify-between">
             <div className="flex flex-row gap-16 text-lg">
               <Link to="/">Início</Link>
-              <Link to="/recursos">Recursos</Link>
+              <Link to="/resources">Recursos</Link>
               <Link to="/sobre">Sobre Mim</Link>
             </div>
             <p className="text-lg">
@@ -28,7 +28,7 @@ const Footer = () => {
             </p>
           </div>
         </div>
-        <div className="mb-6 flex flex-col justify-between gap-4 border-t border-gray-300 pt-6 text-center text-lg md:flex-row md:gap-0 md:text-left">
+        <div className="mb-6 flex flex-col-reverse justify-between gap-6 border-t border-gray-300 pt-6 text-center text-lg md:flex-row md:gap-0 md:text-left">
           <p>
             © 2025 <span className="font-medium">dsbfelipe</span>. Todos os
             direitos reservados
