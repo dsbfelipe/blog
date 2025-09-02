@@ -1,6 +1,6 @@
 import { FunnelSimpleIcon, MagnifyingGlassIcon } from "@phosphor-icons/react";
 import PostsList from "../domain/posts-list";
-import posts from "../../mock/posts";
+import posts from "../../content/index.js";
 
 const PostsSection = () => {
   return (

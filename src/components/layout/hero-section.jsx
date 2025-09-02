@@ -28,7 +28,8 @@ const HeroSection = () => {
 const SquareGrid = ({ url }) => {
   return (
     <div
-      className={`mt-24 h-80 w-full bg-contain bg-center bg-repeat md:block md:h-128 bg-[url(${url})]`}
+      className="mt-24 h-80 w-full bg-contain bg-center bg-repeat md:block md:h-128"
+      style={{ backgroundImage: `url(${url})` }}
     ></div>
   );
 };

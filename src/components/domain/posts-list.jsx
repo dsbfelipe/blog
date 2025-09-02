@@ -12,6 +12,7 @@ const PostsList = ({ posts }) => {
           image={post.image}
           tags={post.tags}
           content={post.content}
+          path={post.path}
         />
       ))}
     </div>
