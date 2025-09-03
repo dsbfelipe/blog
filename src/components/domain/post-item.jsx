@@ -6,13 +6,15 @@ const PostItem = ({ title, category, date, alt, tags, path }) => {
   return (
     <div className="mb-12 flex w-full flex-col justify-between border-t border-gray-300 pt-12 font-outfit md:flex-row dark:border-gray-700">
       <div className="flex flex-1 flex-col gap-4 md:flex-row md:justify-between md:gap-0">
-        <p className="text-gray-500 dark:text-gray-300">{category}</p>
-        <img
-          className="mb-6 md:mr-12 md:mb-0 md:max-w-96"
-          src={`/images/${path}.webp`}
-          alt={alt}
-          loading="lazy"
-        />
+        <p className="text-gray-500 dark:text-gray-400">{category}</p>
+        <Link to="/posts/$post" params={{ post: path }}>
+          <img
+            className="mb-6 aspect-[4/3] object-cover md:mr-12 md:mb-0 md:max-w-96"
+            src={`/images/${path}/index.webp`}
+            alt={alt}
+            loading="lazy"
+          />
+        </Link>
       </div>
       <div className="flex-1">
         <div className="flex gap-2">
@@ -20,10 +22,14 @@ const PostItem = ({ title, category, date, alt, tags, path }) => {
             <Tag key={tag} tag={tag} />
           ))}
         </div>
-        <p className="mt-4 text-4xl">{title}</p>
-        <p className="mt-2 mb-8 text-gray-500">{formatDate(date)}</p>
         <Link to="/posts/$post" params={{ post: path }}>
-          <button className="flex w-full cursor-pointer items-center justify-center gap-2 bg-gray-950 px-6 py-3 text-gray-200 shadow-md md:w-auto dark:bg-gray-200 dark:text-gray-950">
+          <p className="mt-4 text-4xl">{title}</p>
+        </Link>
+        <p className="mt-2 mb-8 text-gray-500 dark:text-gray-400">
+          {formatDate(date)}
+        </p>
+        <Link to="/posts/$post" params={{ post: path }}>
+          <button className="flex w-full cursor-pointer items-center justify-center gap-2 border-b-2 px-2 py-3 hover:bg-gray-100 md:w-auto">
             <BookOpenIcon />
             Ler mais
           </button>
@@ -34,11 +40,7 @@ const PostItem = ({ title, category, date, alt, tags, path }) => {
 };
 
 const Tag = ({ tag }) => {
-  return (
-    <div>
-      <div className="border border-gray-400 px-2">{tag}</div>
-    </div>
-  );
+  return <div className="border border-gray-400 px-2">{tag}</div>;
 };
 
 export default PostItem;
