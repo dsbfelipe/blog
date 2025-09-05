@@ -18,13 +18,18 @@ const components = {
       {...props}
     />
   ),
-  p: ({ ...props }) => <p className="text-justify font-inter" {...props} />,
+  p: ({ ...props }) => (
+    <p className="mb-4 text-justify indent-12 font-inter" {...props} />
+  ),
   img: ({ ...props }) => (
     <img {...props} className="mt-16 mb-16" alt={props.alt} />
   ),
 };
 
-const posts = import.meta.glob("../../content/*.md", { as: "raw" });
+const posts = import.meta.glob("../../content/*.md", {
+  query: "?raw",
+  import: "default",
+});
 
 export const Route = createLazyFileRoute("/posts/$post")({
   component: RouteComponent,

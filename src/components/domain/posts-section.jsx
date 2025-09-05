@@ -1,7 +1,8 @@
 import PostsList from "./posts-list.jsx";
-import posts from "../../content/index.js";
-import { useState } from "react";
 import PostsFilters from "./posts-filters.jsx";
+import PaginationControls from "../ui/pagination-controls.jsx";
+import { Route } from "../../routes/index.jsx";
+import { useNavigate } from "@tanstack/react-router";
 
 const sortByDate = (a, b) => {
   return new Date(b.date) - new Date(a.date);
@@ -16,56 +17,45 @@ const sortList = {
   name: sortByName,
 };
 
-const PostsSection = () => {
-  const [filter, setFilter] = useState("all");
-  const [sort, setSort] = useState("date");
-  const [page, setPage] = useState(1);
+const PostsSection = ({ posts }) => {
+  const { page, filter, sort } = Route.useSearch();
+  const navigate = useNavigate({ from: Route.fullPath });
 
-  const results = posts
-    .filter((post) => filter === "all" || post.category === filter)
-    .sort(sortList[sort]);
+  const results = applyQuery(posts, filter, sort);
+  const { numberOfPages, paginatedResults } = getPagination(results, page, 5);
 
-  const postsPerPage = 1;
-  const numberOfPages = Math.ceil(results.length / postsPerPage);
-
-  const paginatedResults = results.slice(
-    (page - 1) * postsPerPage,
-    page * postsPerPage,
-  );
+  if (page > numberOfPages)
+    navigate({ search: { page: numberOfPages, filter, sort } });
 
   return (
     <div className="mt-16">
-      <PostsFilters setFilter={setFilter} setSort={setSort} />
+      <PostsFilters navigate={navigate} filter={filter} sort={sort} />
       <PostsList posts={paginatedResults}></PostsList>
       <PaginationControls
         page={page}
-        setPage={setPage}
+        navigate={navigate}
         numberOfPages={numberOfPages}
       />
     </div>
   );
 };
 
-const PaginationControls = ({ page, setPage, numberOfPages }) => {
-  const pages = Array.from({ length: numberOfPages }, (_, i) => i + 1);
+const applyQuery = (posts, filter, sort) => {
+  return posts
+    .filter((post) => filter === "all" || post.category === filter)
+    .sort(sortList[sort]);
+};
 
-  return (
-    <div className="mt-6 flex items-center justify-center gap-2 border-t border-gray-300 p-8">
-      {pages.map((number) => (
-        <button
-          key={number}
-          onClick={() => setPage(number)}
-          className={`cursor-pointer rounded px-3 py-1 font-outfit text-xl ${
-            number === page
-              ? "bg-gray-900 text-white dark:bg-gray-200 dark:text-gray-900"
-              : "bg-gray-200 dark:bg-gray-950"
-          }`}
-        >
-          {number}
-        </button>
-      ))}
-    </div>
-  );
+const getPagination = (results, page, postsPerPage) => {
+  const numberOfPages = Math.ceil(results.length / postsPerPage);
+
+  return {
+    numberOfPages,
+    paginatedResults: results.slice(
+      (page - 1) * postsPerPage,
+      page * postsPerPage,
+    ),
+  };
 };
 
 export default PostsSection;

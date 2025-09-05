@@ -9,7 +9,7 @@ const HeroSection = () => {
       ) : (
         <SquareGrid url="/svgs/square-grid-light.svg" />
       )}
-      <div className="mt-24 flex flex-col justify-between border-gray-300 md:flex-row md:items-end md:border-t md:pt-16 dark:border-gray-700">
+      <div className="mt-24 flex flex-col justify-between md:flex-row md:items-end dark:border-gray-700">
         <p
           aria-label="Bem-vindo"
           className="mb-8 flex-1 font-arnaiz text-5xl md:mb-0 md:text-7xl"
