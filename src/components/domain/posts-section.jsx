@@ -22,7 +22,7 @@ const PostsSection = ({ posts }) => {
   const navigate = useNavigate({ from: Route.fullPath });
 
   const results = applyQuery(posts, filter, sort);
-  const { numberOfPages, paginatedResults } = getPagination(results, page, 5);
+  const { numberOfPages, paginatedResults } = getPagination(results, page, 1);
 
   if (page > numberOfPages)
     navigate({ search: { page: numberOfPages, filter, sort } });
@@ -30,7 +30,7 @@ const PostsSection = ({ posts }) => {
   return (
     <div className="mt-16">
       <PostsFilters navigate={navigate} filter={filter} sort={sort} />
-      <PostsList posts={paginatedResults}></PostsList>
+      <PostsList posts={paginatedResults} />
       <PaginationControls
         page={page}
         navigate={navigate}
