@@ -11,7 +11,7 @@ const filterOptions = [
   { value: "Curso", label: "Curso" },
 ];
 
-const PostsFilters = ({ navigate, filter, sort }) => {
+const PostsFilters = ({ navigate, filter, sort, setSearch }) => {
   return (
     <div className="flex items-center justify-between font-outfit">
       <p className="hidden items-center gap-2 md:flex">
@@ -37,6 +37,7 @@ const PostsFilters = ({ navigate, filter, sort }) => {
         <input
           type="text"
           placeholder="Pesquisar..."
+          onChange={(event) => setSearch(event.target.value)}
           className="indent-2 focus:outline-0"
         />
       </div>

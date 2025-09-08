@@ -3,6 +3,7 @@ import PostsFilters from "./posts-filters.jsx";
 import PaginationControls from "../ui/pagination-controls.jsx";
 import { Route } from "../../routes/index.jsx";
 import { useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 
 const sortByDate = (a, b) => {
   return new Date(b.date) - new Date(a.date);
@@ -19,18 +20,31 @@ const sortList = {
 
 const PostsSection = ({ posts }) => {
   const { page, filter, sort } = Route.useSearch();
+  const [search, setSearch] = useState("");
   const navigate = useNavigate({ from: Route.fullPath });
 
-  const results = applyQuery(posts, filter, sort);
-  const { numberOfPages, paginatedResults } = getPagination(results, page, 1);
+  const queriedResults = applyQuery(posts, filter, sort);
+  const { numberOfPages, paginatedResults } = getPagination(
+    queriedResults,
+    page,
+  );
+
+  const searchedResults = paginatedResults.filter((post) =>
+    post.title.toLowerCase().includes(search.toLowerCase()),
+  );
 
   if (page > numberOfPages)
     navigate({ search: { page: numberOfPages, filter, sort } });
 
   return (
     <div className="mt-16">
-      <PostsFilters navigate={navigate} filter={filter} sort={sort} />
-      <PostsList posts={paginatedResults} />
+      <PostsFilters
+        navigate={navigate}
+        filter={filter}
+        sort={sort}
+        setSearch={setSearch}
+      />
+      <PostsList posts={searchedResults} />
       <PaginationControls
         page={page}
         navigate={navigate}
@@ -46,7 +60,7 @@ const applyQuery = (posts, filter, sort) => {
     .sort(sortList[sort]);
 };
 
-const getPagination = (results, page, postsPerPage) => {
+const getPagination = (results, page, postsPerPage = 5) => {
   const numberOfPages = Math.ceil(results.length / postsPerPage);
 
   return {
