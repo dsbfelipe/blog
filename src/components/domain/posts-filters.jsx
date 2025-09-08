@@ -5,6 +5,7 @@ const sortOptions = [
   { value: "date", label: "Por data" },
   { value: "name", label: "Por nome" },
 ];
+
 const filterOptions = [
   { value: "all", label: "Todas as categorias" },
   { value: "Projeto", label: "Projeto" },
@@ -32,15 +33,21 @@ const PostsFilters = ({ navigate, filter, sort, setSearch }) => {
         label="Ordenar:"
         navigate={navigate}
       />
-      <div className="flex w-full items-center gap-2 rounded-md border border-gray-300 px-4 py-2 md:w-auto dark:border-gray-700">
-        <MagnifyingGlassIcon />
-        <input
-          type="text"
-          placeholder="Pesquisar..."
-          onChange={(event) => setSearch(event.target.value)}
-          className="indent-2 focus:outline-0"
-        />
-      </div>
+      <SearchBar onChange={(event) => setSearch(event.target.value)} />
+    </div>
+  );
+};
+
+const SearchBar = ({ onChange }) => {
+  return (
+    <div className="flex w-full items-center gap-2 rounded-md border border-gray-300 px-4 py-2 md:w-auto dark:border-gray-700">
+      <MagnifyingGlassIcon />
+      <input
+        type="text"
+        placeholder="Pesquisar..."
+        onChange={onChange}
+        className="indent-2 focus:outline-0"
+      />
     </div>
   );
 };
