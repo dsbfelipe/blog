@@ -8,6 +8,7 @@ const searchSchema = z.object({
   page: z.number().min(1).catch(1),
   filter: z.enum(["all", "Projeto", "Curso"]).catch("all"),
   sort: z.enum(["date", "name"]).catch("date"),
+  search: z.string().catch(""),
 });
 
 export const Route = createFileRoute("/")({

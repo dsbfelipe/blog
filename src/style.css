@@ -11,6 +11,16 @@
   --font-arnaiz: "Arnaiz";
   --font-outfit: "Outfit", sans-serif;
   --font-inter: "Inter", sans-serif;
+  --font-pt-sans: "PT Sans", sans-serif;
+
+  --color-primary: oklch(92.2% 0 0);
+  --color-secondary: oklch(87% 0 0);
+  --color-text: oklch(14.5% 0 0);
+  --color-dark-primary: oklch(14.5% 0 0);
+  --color-dark-secondary: oklch(37.1% 0 0);
+  --color-dark-text: oklch(92.3% 0.003 48.717);
+  --color-hover: oklch(97% 0 0);
+  --color-dark-hover: oklch(20.5% 0 0);
 }
 
 html,

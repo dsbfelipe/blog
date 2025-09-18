@@ -22,7 +22,7 @@ const links = [
 
 const Footer = () => {
   return (
-    <div className="relative mt-24 flex flex-col justify-between border-t border-gray-300 pt-16 font-outfit dark:border-gray-700">
+    <div className="relative mt-24 flex flex-col justify-between border-gray-300 pt-16 font-outfit dark:border-gray-700">
       <div className="z-10">
         <div className="mb-4">
           <BrandSection />
@@ -40,7 +40,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="absolute -bottom-64 z-0 font-arnaiz text-[407px] text-gray-300 dark:text-gray-700">
+      <div className="absolute -bottom-70 z-0 font-arnaiz text-[407px] text-secondary dark:text-dark-secondary">
         BLOG
       </div>
     </div>

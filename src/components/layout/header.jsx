@@ -36,7 +36,11 @@ const Header = () => {
           onClick={toggleTheme}
           ariaLabel="Alternar entre modo claro e escuro"
         >
-          {darkMode ? <MoonIcon size={24} /> : <SunIcon size={24} />}
+          {darkMode ? (
+            <MoonIcon size={24} alt="Ícone em forma de lua" />
+          ) : (
+            <SunIcon size={24} alt="Ícone em forma de sol" />
+          )}
         </HeaderButton>
 
         <p className="hidden md:block">•</p>
@@ -65,7 +69,7 @@ const HeaderButton = ({ children, ariaLabel, href, onClick }) => {
       <button
         onClick={onClick}
         aria-label={ariaLabel}
-        className={`${onClick ? "block" : "hidden md:block"} cursor-pointer rounded-md bg-transparent p-2 hover:bg-gray-100 dark:hover:bg-gray-900`}
+        className={`${onClick ? "block" : "hidden md:block"} cursor-pointer rounded-md bg-transparent p-2 hover:bg-hover dark:hover:bg-dark-hover`}
       >
         {children}
       </button>

@@ -12,6 +12,7 @@ const Select = ({ label, options, type, query, navigate }) => {
         onChange={(event) => {
           navigate({
             search: (prev) => ({ ...prev, [type]: event.target.value }),
+            resetScroll: false,
           });
         }}
       >

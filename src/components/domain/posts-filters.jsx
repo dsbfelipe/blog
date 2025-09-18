@@ -12,7 +12,7 @@ const filterOptions = [
   { value: "Curso", label: "Curso" },
 ];
 
-const PostsFilters = ({ navigate, filter, sort, setSearch }) => {
+const PostsFilters = ({ navigate, filter, sort, search }) => {
   return (
     <div className="flex items-center justify-between font-outfit">
       <p className="hidden items-center gap-2 md:flex">
@@ -33,19 +33,25 @@ const PostsFilters = ({ navigate, filter, sort, setSearch }) => {
         label="Ordenar:"
         navigate={navigate}
       />
-      <SearchBar onChange={(event) => setSearch(event.target.value)} />
+      <SearchBar navigate={navigate} search={search} />
     </div>
   );
 };
 
-const SearchBar = ({ onChange }) => {
+const SearchBar = ({ navigate, search }) => {
   return (
-    <div className="flex w-full items-center gap-2 rounded-md border border-gray-300 px-4 py-2 md:w-auto dark:border-gray-700">
+    <div className="flex w-full items-center gap-2 rounded-md border border-secondary px-4 py-2 md:w-auto dark:border-dark-secondary">
       <MagnifyingGlassIcon />
       <input
         type="text"
         placeholder="Pesquisar..."
-        onChange={onChange}
+        value={search}
+        onChange={(event) => {
+          navigate({
+            search: (prev) => ({ ...prev, search: event.target.value }),
+            resetScroll: false,
+          });
+        }}
         className="indent-2 focus:outline-0"
       />
     </div>

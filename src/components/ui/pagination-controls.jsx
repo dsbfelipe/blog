@@ -2,7 +2,7 @@ const PaginationControls = ({ page, numberOfPages, navigate }) => {
   const pages = Array.from({ length: numberOfPages }, (_, i) => i + 1);
 
   return (
-    <div className="mt-6 flex items-center justify-center gap-2 border-t border-gray-300 p-8">
+    <div className="mt-6 flex items-center justify-center gap-2 border-t border-secondary p-8 dark:border-dark-secondary">
       {pages.map((number) => (
         <button
           key={number}
@@ -13,7 +13,7 @@ const PaginationControls = ({ page, numberOfPages, navigate }) => {
           }}
           className={`cursor-pointer rounded px-3 py-1 font-outfit text-xl ${
             number === page
-              ? "bg-gray-900 text-white dark:bg-gray-200 dark:text-gray-900"
+              ? "bg-dark-primary text-dark-text dark:bg-dark-text dark:text-text"
               : "bg-gray-200 dark:bg-gray-950"
           }`}
         >

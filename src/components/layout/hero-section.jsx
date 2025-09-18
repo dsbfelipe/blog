@@ -9,7 +9,7 @@ const HeroSection = () => {
       ) : (
         <SquareGrid url="/svgs/square-grid-light.svg" />
       )}
-      <div className="mt-24 flex flex-col justify-between md:flex-row md:items-end dark:border-gray-700">
+      <div className="mt-24 flex flex-col justify-between md:flex-row md:items-end">
         <p
           aria-label="Bem-vindo"
           className="mb-8 flex-1 font-arnaiz text-5xl md:mb-0 md:text-7xl"
@@ -30,7 +30,7 @@ const SquareGrid = ({ url }) => {
     <div
       className="mt-24 h-80 w-full bg-contain bg-center bg-repeat md:block md:h-128"
       style={{ backgroundImage: `url(${url})` }}
-    ></div>
+    />
   );
 };
 
