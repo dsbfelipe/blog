@@ -1,6 +1,6 @@
 const Option = ({ value, label }) => {
   return (
-    <option className="bg-gray-200 dark:bg-gray-950" value={value}>
+    <option className="bg-primary dark:bg-dark-primary" value={value}>
       {label}
     </option>
   );

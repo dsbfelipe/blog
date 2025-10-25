@@ -17,6 +17,7 @@ export const Route = createFileRoute("/")({
 });
 
 function RouteComponent() {
+  console.log();
   return (
     <>
       <HeroSection />

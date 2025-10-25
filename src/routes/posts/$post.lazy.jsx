@@ -1,5 +1,4 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
 import Markdown from "react-markdown";
 import components from "../../components/ui/markdown-components";
 
@@ -10,18 +9,15 @@ const posts = import.meta.glob("../../content/*.md", {
 
 export const Route = createLazyFileRoute("/posts/$post")({
   component: RouteComponent,
+  loader: async ({ params }) => {
+    const path = `../../content/${params.post}.md`;
+    const content = await posts[path]();
+    return content;
+  },
 });
 
 function RouteComponent() {
-  const { post } = Route.useParams();
-  const [content, setContent] = useState("");
-
-  useEffect(() => {
-    const path = `../../content/${post}.md`;
-    posts[path]().then((rawContent) => {
-      setContent(rawContent);
-    });
-  }, [post]);
+  const content = Route.useLoaderData();
 
   return (
     <main className="flex w-full justify-center">

@@ -14,7 +14,7 @@ const filterOptions = [
 
 const PostsFilters = ({ navigate, filter, sort, search }) => {
   return (
-    <div className="flex items-center justify-between font-outfit">
+    <div className="font-outfit flex items-center justify-between">
       <p className="hidden items-center gap-2 md:flex">
         <FunnelSimpleIcon />
         Filtros
@@ -40,7 +40,7 @@ const PostsFilters = ({ navigate, filter, sort, search }) => {
 
 const SearchBar = ({ navigate, search }) => {
   return (
-    <div className="flex w-full items-center gap-2 rounded-md border border-secondary px-4 py-2 md:w-auto dark:border-dark-secondary">
+    <div className="border-secondary dark:border-dark-secondary flex w-full items-center gap-2 rounded-full border px-4 py-2 md:w-auto">
       <MagnifyingGlassIcon />
       <input
         type="text"

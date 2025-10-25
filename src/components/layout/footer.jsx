@@ -22,7 +22,7 @@ const links = [
 
 const Footer = () => {
   return (
-    <div className="relative mt-24 flex flex-col justify-between border-gray-300 pt-16 font-outfit dark:border-gray-700">
+    <div className="font-outfit glass mt-24 mb-4 flex flex-col justify-between px-16 py-8 pt-12">
       <div className="z-10">
         <div className="mb-4">
           <BrandSection />
@@ -38,10 +38,6 @@ const Footer = () => {
           </p>
           <Links />
         </div>
-      </div>
-
-      <div className="absolute -bottom-70 z-0 font-arnaiz text-[407px] text-secondary dark:text-dark-secondary">
-        BLOG
       </div>
     </div>
   );
@@ -60,8 +56,8 @@ const SocialsLink = ({ href, children }) => (
 
 const BrandSection = () => (
   <div className="mb-16 flex flex-col text-right">
-    <p className="mb-4 font-arnaiz text-6xl">BLOG</p>
-    <p className="self-end text-2xl md:w-2/5">
+    <p className="font-wister-demo mb-4 text-7xl">BNF!</p>
+    <p className="self-end text-2xl md:w-3/5 lg:w-2/5">
       Mais um blog sobre programação... ouvi dizer que não tem o suficiente
       ainda
     </p>

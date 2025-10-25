@@ -3,17 +3,17 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @font-face {
-  font-family: Arnaiz;
-  src: url(/fonts/arnaiz.otf);
+  font-family: Wister Demo;
+  src: url(/fonts/wister-demo.otf);
 }
 
 @theme {
-  --font-arnaiz: "Arnaiz";
+  --font-wister-demo: "Wister Demo";
   --font-outfit: "Outfit", sans-serif;
   --font-inter: "Inter", sans-serif;
   --font-pt-sans: "PT Sans", sans-serif;
 
-  --color-primary: oklch(92.2% 0 0);
+  --color-primary: oklch(96.8% 0.007 247.896);
   --color-secondary: oklch(87% 0 0);
   --color-text: oklch(14.5% 0 0);
   --color-dark-primary: oklch(14.5% 0 0);
@@ -23,7 +23,12 @@
   --color-dark-hover: oklch(20.5% 0 0);
 }
 
+.glass {
+  @apply rounded-4xl bg-gradient-to-t from-slate-50/75 to-slate-200/75 shadow-md shadow-slate-400 outline-2 outline-slate-50 backdrop-blur-sm;
+}
+
 html,
 body {
   overflow-x: hidden;
+  scrollbar-gutter: stable;
 }
